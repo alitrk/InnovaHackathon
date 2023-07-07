@@ -1,7 +1,7 @@
 package com.example.innovahackathon.features.fetchCryptoFromApi.ui
 
-import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.innovahackathon.features.fetchCryptoFromApi.data.model.CryptoItem
 import com.example.innovahackathon.features.fetchCryptoFromApi.data.repo.CryptoRepository
 import com.example.innovahackathon.utils.Resource
