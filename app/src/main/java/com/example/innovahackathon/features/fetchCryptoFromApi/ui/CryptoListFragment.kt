@@ -5,12 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.innovahackathon.R
 import com.example.innovahackathon.databinding.FragmentCryptoListBinding
 import com.example.innovahackathon.utils.Resource
+import com.example.innovahackathon.utils.navigate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -18,8 +22,7 @@ import kotlinx.coroutines.launch
 class CryptoListFragment : Fragment() {
 
     private lateinit var viewModel: CryptoListViewModel
-    private var _binding: FragmentCryptoListBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentCryptoListBinding
 
     private lateinit var adapter: CryptoListAdapter
 
@@ -28,8 +31,9 @@ class CryptoListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentCryptoListBinding.inflate(inflater, container, false)
-        binding.cryptoListRecyclerview.layoutManager = LinearLayoutManager(requireContext())
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_crypto_list, container, false)
+        binding.cryptoListFragment = this
+        binding.rvCryptoList.layoutManager = LinearLayoutManager(requireContext())
         observeCryptoList()
         return binding.root
 
@@ -53,7 +57,7 @@ class CryptoListFragment : Fragment() {
                     is Resource.Success -> {
                         adapter = CryptoListAdapter(requireContext(), resource.data!!)
                         binding.apply {
-                            cryptoListRecyclerview.adapter = adapter
+                            rvCryptoList.adapter = adapter
                             progressBar.isVisible = false
                         }
 
@@ -62,7 +66,7 @@ class CryptoListFragment : Fragment() {
                     is Resource.Error -> {
                         // Show error message
                         binding.apply {
-                            errorMessage.text = resource.message
+                            tvErrorMessage.text = resource.message
                             progressBar.isVisible = false
                             /*errorMessage.isVisible = true
                             retryBtn.isVisible = true*/
@@ -73,6 +77,10 @@ class CryptoListFragment : Fragment() {
                 }
             }
         }
+    }
+
+    fun fabOnClick(view: View) {
+        Navigation.navigate(view, R.id.action_cryptoListFragment_to_accountFragment)
     }
 
 }

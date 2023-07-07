@@ -3,7 +3,7 @@
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/nav_graph"
-            app:startDestination="@id/cryptoListFragment">
+            app:startDestination="@id/signInFragment">
 
     <fragment android:id="@+id/cryptoListFragment"
               android:name="com.example.innovahackathon.features.fetchCryptoFromApi.ui.CryptoListFragment"
@@ -12,6 +12,7 @@
 
         <action android:id="@+id/action_cryptoListFragment_to_cryptoPriceFragment"
                 app:destination="@id/cryptoPriceFragment"/>
+        <action android:id="@+id/action_cryptoListFragment_to_accountFragment" app:destination="@id/accountFragment"/>
 
     </fragment>
 
@@ -22,5 +23,15 @@
         <argument
                 android:name="symbol"
                 app:argType="string"/>
+    </fragment>
+    <fragment android:id="@+id/signInFragment"
+              android:name="com.example.innovahackathon.features.firebaseAuth.ui.SignInFragment"
+              android:label="fragment_sign_in" tools:layout="@layout/fragment_sign_in">
+        <action android:id="@+id/action_signInFragment_to_cryptoListFragment" app:destination="@id/cryptoListFragment"/>
+    </fragment>
+    <fragment android:id="@+id/accountFragment"
+              android:name="com.example.innovahackathon.features.firebaseAuth.ui.AccountFragment"
+              android:label="fragment_account" tools:layout="@layout/fragment_account">
+        <action android:id="@+id/action_accountFragment_to_signInFragment" app:destination="@id/signInFragment"/>
     </fragment>
 </navigation>
