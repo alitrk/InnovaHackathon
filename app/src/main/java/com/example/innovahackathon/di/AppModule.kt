@@ -1,7 +1,36 @@
 package com.example.innovahackathon.di
 
-sealed class Resource<T>(val data: T? = null, val message: String? = null) {
-    class Success<T>(data: T) : Resource<T>(data)
-    class Error<T>(message: String, data: T? = null) : Resource<T>(data, message)
-    class Loading<T>(data: T? = null) : Resource<T>(data)
+import com.example.innovahackathon.features.fetchCryptoFromApi.data.api.CryptoApi
+import com.example.innovahackathon.features.fetchCryptoFromApi.data.datasource.CryptoDataSource
+import com.example.innovahackathon.utils.Constants.BASE_URL
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
+
+@Module
+@InstallIn(SingletonComponent::class)
+object AppModule {
+
+    @Provides
+    @Singleton
+    fun provideCryptoApi(): CryptoApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(CryptoApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCryptoDataSource(api: CryptoApi): CryptoDataSource {
+        return CryptoDataSource(api)
+    }
+
+
+
 }
