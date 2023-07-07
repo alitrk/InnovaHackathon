@@ -60,7 +60,6 @@ class CryptoListFragment : Fragment() {
                             rvCryptoList.adapter = adapter
                             progressBar.isVisible = false
                         }
-
                     }
 
                     is Resource.Error -> {
@@ -68,11 +67,8 @@ class CryptoListFragment : Fragment() {
                         binding.apply {
                             tvErrorMessage.text = resource.message
                             progressBar.isVisible = false
-                            /*errorMessage.isVisible = true
-                            retryBtn.isVisible = true*/
+                            tvErrorMessage.isVisible = true
                         }
-                        //titleBarBinding.buttonSurpriseMe.isClickable = false
-
                     }
                 }
             }

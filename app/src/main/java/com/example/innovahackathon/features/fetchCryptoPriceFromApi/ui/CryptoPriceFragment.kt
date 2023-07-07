@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -48,7 +49,8 @@ class CryptoPriceFragment : Fragment() {
                 is Resource.Error -> {
                     val errorMessage = resource.message ?: "Error"
                     binding.apply {
-
+                        tvErrorMessagePrice.text = errorMessage
+                        tvErrorMessagePrice.isVisible = true
                     }
                 }
 
