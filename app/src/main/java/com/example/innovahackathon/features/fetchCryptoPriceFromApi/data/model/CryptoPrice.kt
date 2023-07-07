@@ -1,4 +1,4 @@
-package com.example.innovahackathon.features.fetchCryptoFromApi.data.model
+package com.example.innovahackathon.features.fetchCryptoPriceFromApi.data.model
 
 data class CryptoPrice(
     val c: Double,

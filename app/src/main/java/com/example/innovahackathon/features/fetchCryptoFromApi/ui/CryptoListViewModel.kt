@@ -19,6 +19,10 @@ class CryptoListViewModel @Inject constructor(private var cryptoRepository: Cryp
     private val _cryptoList = MutableStateFlow<Resource<List<CryptoItem>>>(Resource.Loading())
     val cryptoList: StateFlow<Resource<List<CryptoItem>>> = _cryptoList
 
+    init {
+        fetchCrypto()
+    }
+
     private fun fetchCrypto() {
         viewModelScope.launch {
             cryptoRepository.fetchCrypto().stateIn(viewModelScope, SharingStarted.Eagerly, Resource.Loading())

@@ -20,6 +20,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "API_KEY", api_key)
+
+        buildFeatures {
+            viewBinding = true
+            dataBinding true
+        }
     }
 
     buildTypes {
@@ -36,6 +41,7 @@ android {
         jvmTarget = '1.8'
     }
 }
+apply plugin: "androidx.navigation.safeargs"
 
 dependencies {
 
@@ -60,7 +66,6 @@ dependencies {
     implementation "androidx.room:room-runtime:2.5.2"
     kapt "androidx.room:room-compiler:2.5.2"
     implementation "androidx.room:room-ktx:2.5.2"
-
 
     //Hilt
     implementation "com.google.dagger:hilt-android:2.44"

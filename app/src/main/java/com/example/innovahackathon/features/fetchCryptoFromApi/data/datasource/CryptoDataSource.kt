@@ -12,7 +12,7 @@ class CryptoDataSource(private var cryptoApi: CryptoApi) {
         return flow {
             emit(Resource.Loading())
             try {
-                val cryptoItems = cryptoApi.getCrypto().cryptoItems
+                val cryptoItems = cryptoApi.getCrypto()
                 emit(Resource.Success(cryptoItems))
             } catch (e: IOException) {
                 emit(Resource.Error("Network error: ${e.localizedMessage}"))

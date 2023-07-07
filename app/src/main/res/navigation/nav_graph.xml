@@ -2,9 +2,17 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
-            app:startDestination="@id/exampleFragment">
+            app:startDestination="@id/cryptoListFragment">
 
-    <fragment android:id="@+id/exampleFragment"
+    <fragment android:id="@+id/cryptoListFragment"
               android:name="com.example.innovahackathon.features.fetchCryptoFromApi.ui.CryptoListFragment"
-              android:label="fragment_example" tools:layout="@layout/fragment_crypto_list"/>
+              android:label="fragment_crypto_list" tools:layout="@layout/fragment_crypto_list">
+        <action android:id="@+id/action_cryptoListFragment_to_cryptoPriceFragment"
+                app:destination="@id/cryptoPriceFragment"/>
+    </fragment>
+    <fragment android:id="@+id/cryptoPriceFragment"
+              android:name="com.example.innovahackathon.features.fetchCryptoPriceFromApi.ui.CryptoPriceFragment"
+              android:label="fragment_crypto_price" tools:layout="@layout/fragment_crypto_price">
+        <argument android:name="symbol" app:argType="string"/>
+    </fragment>
 </navigation>

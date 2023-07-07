@@ -2,6 +2,7 @@ package com.example.innovahackathon.di
 
 import com.example.innovahackathon.features.fetchCryptoFromApi.data.api.CryptoApi
 import com.example.innovahackathon.features.fetchCryptoFromApi.data.datasource.CryptoDataSource
+import com.example.innovahackathon.features.fetchCryptoFromApi.data.repo.CryptoRepository
 import com.example.innovahackathon.utils.Constants.BASE_URL
 import dagger.Module
 import dagger.Provides
@@ -31,6 +32,11 @@ object AppModule {
         return CryptoDataSource(api)
     }
 
+    @Provides
+    @Singleton
+    fun provideCryptoRepository(cds: CryptoDataSource): CryptoRepository {
+        return CryptoRepository(cds)
+    }
 
 
 }
