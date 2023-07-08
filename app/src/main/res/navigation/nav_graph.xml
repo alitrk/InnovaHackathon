@@ -23,6 +23,7 @@
         <argument
                 android:name="symbol"
                 app:argType="string"/>
+        <argument android:name="displaySymbol" app:argType="string"/>
     </fragment>
     <fragment android:id="@+id/signInFragment"
               android:name="com.example.innovahackathon.features.firebaseAuth.ui.SignInFragment"

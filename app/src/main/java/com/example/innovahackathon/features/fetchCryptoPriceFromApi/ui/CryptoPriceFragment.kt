@@ -41,7 +41,12 @@ class CryptoPriceFragment : Fragment() {
                     val cryptoPrice = resource.data
                     binding.apply {
                         if (cryptoPrice != null) {
-                            //tryTxt.text = cryptoPrice.t.toString()
+                            tvCoinName.text = args.displaySymbol
+                            progressBarPrice.isVisible = false
+                            tvCoinPrice.text = cryptoPrice.c.toString()
+                            tvHighestTodayValue.text = cryptoPrice.h.toString()
+                            tvPercentChangeValue.text = cryptoPrice.dp.toString()
+                            cvOuterCard.isVisible = true
                         }
                     }
                 }
@@ -49,6 +54,7 @@ class CryptoPriceFragment : Fragment() {
                 is Resource.Error -> {
                     val errorMessage = resource.message ?: "Error"
                     binding.apply {
+                        progressBarPrice.isVisible = false
                         tvErrorMessagePrice.text = errorMessage
                         tvErrorMessagePrice.isVisible = true
                     }
@@ -56,6 +62,10 @@ class CryptoPriceFragment : Fragment() {
 
                 is Resource.Loading -> {
                     // Handle loading state
+                    binding.apply {
+                        progressBarPrice.isVisible = true
+                    }
+
                 }
             }
         }

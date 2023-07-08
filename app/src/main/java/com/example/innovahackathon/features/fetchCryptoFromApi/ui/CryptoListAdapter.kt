@@ -1,5 +1,6 @@
 package com.example.innovahackathon.features.fetchCryptoFromApi.ui
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +10,7 @@ import com.example.innovahackathon.databinding.CryptoListItemBinding
 import com.example.innovahackathon.features.fetchCryptoFromApi.data.model.CryptoItem
 
 
-class CryptoListAdapter(private val context: Context, private val cryptoItems: List<CryptoItem>) :
+class CryptoListAdapter(private val context: Context, private var cryptoItems: List<CryptoItem>) :
     RecyclerView.Adapter<CryptoListAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,10 +37,16 @@ class CryptoListAdapter(private val context: Context, private val cryptoItems: L
                 cryptoName.text = cryptoItem.displaySymbol
 
                 root.setOnClickListener {
-                    val directions = CryptoListFragmentDirections.actionCryptoListFragmentToCryptoPriceFragment(cryptoItem.symbol)
+                    val directions = CryptoListFragmentDirections.actionCryptoListFragmentToCryptoPriceFragment(cryptoItem.symbol, cryptoItem.displaySymbol)
                     it.findNavController().navigate(directions)
                 }
             }
         }
+    }
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(filteredList: List<CryptoItem>) {
+        cryptoItems = filteredList
+        notifyDataSetChanged()
+
     }
 }
