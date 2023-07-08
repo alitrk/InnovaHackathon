@@ -48,7 +48,7 @@
     </style>
 
     <style name="SearchViewStyle" parent="Widget.AppCompat.Light.SearchView">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
 </resources>

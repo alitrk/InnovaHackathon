@@ -88,6 +88,10 @@ class CryptoListFragment : Fragment(), SearchView.OnQueryTextListener {
         Navigation.navigate(view, R.id.action_cryptoListFragment_to_accountFragment)
     }
 
+    fun cartOnClick(view: View) {
+        Navigation.navigate(view, R.id.action_cryptoListFragment_to_mockBalanceFragment)
+    }
+
     override fun onQueryTextSubmit(query: String): Boolean {
         return false
     }

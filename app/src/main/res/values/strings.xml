@@ -12,8 +12,8 @@
     <string name="log_out">Log out</string>
     <string name="buy">Buy Coin</string>
     <string name="brand_name">Coinco</string>
-    <string name="percent_change">Percent change: </string>
-    <string name="highest_today">Highest today: </string>
+    <string name="percent_change">Percent change:</string>
+    <string name="highest_today">Highest today:</string>
     <string name="editTextString">Search for your favourite coin</string>
 
 </resources>

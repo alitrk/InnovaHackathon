@@ -3,6 +3,8 @@ package com.example.innovahackathon.di
 import com.example.innovahackathon.features.fetchCryptoPriceFromApi.data.api.CryptoPriceApi
 import com.example.innovahackathon.features.fetchCryptoPriceFromApi.data.datasource.CryptoPriceDataSource
 import com.example.innovahackathon.features.fetchCryptoPriceFromApi.data.repo.CryptoPriceRepository
+import com.example.innovahackathon.features.getBalanceFromMock.data.datasource.MockBalanceDataSource
+import com.example.innovahackathon.features.getBalanceFromMock.ui.MockBalanceViewModel
 import com.example.innovahackathon.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -38,5 +40,17 @@ object CryptoPriceModule {
         return CryptoPriceRepository(cds)
     }
 
+    @Provides
+    fun provideMockBalanceDataSource(): MockBalanceDataSource {
+        return MockBalanceDataSource()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMockBalanceViewModel(
+        mockBalanceDataSource: MockBalanceDataSource
+    ): MockBalanceViewModel {
+        return MockBalanceViewModel(mockBalanceDataSource)
+    }
 
 }

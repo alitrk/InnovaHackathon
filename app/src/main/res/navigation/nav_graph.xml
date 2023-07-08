@@ -13,6 +13,8 @@
         <action android:id="@+id/action_cryptoListFragment_to_cryptoPriceFragment"
                 app:destination="@id/cryptoPriceFragment"/>
         <action android:id="@+id/action_cryptoListFragment_to_accountFragment" app:destination="@id/accountFragment"/>
+        <action android:id="@+id/action_cryptoListFragment_to_mockBalanceFragment"
+                app:destination="@id/mockBalanceFragment"/>
 
     </fragment>
 
@@ -35,4 +37,7 @@
               android:label="fragment_account" tools:layout="@layout/fragment_account">
         <action android:id="@+id/action_accountFragment_to_signInFragment" app:destination="@id/signInFragment"/>
     </fragment>
+    <fragment android:id="@+id/mockBalanceFragment"
+              android:name="com.example.innovahackathon.features.getBalanceFromMock.ui.MockBalanceFragment"
+              android:label="fragment_mock_balance" tools:layout="@layout/fragment_mock_balance"/>
 </navigation>
